@@ -1,5 +1,6 @@
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvFileSource;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.EnumSource;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -43,7 +44,7 @@ public class FirstTest {
     public void testFive(Directions value) {
         System.out.println("test five started with value " + value.name());
     }
-
+@Disabled
     @ParameterizedTest
     @CsvSource({
             "alex, qa, 30, works",
@@ -51,8 +52,15 @@ public class FirstTest {
             "britney, manager, 37, sleeps"
     })
     public void testSix(String name, String profession, int age, String activity) {
+        Worker worker = new Worker(name, profession, age, activity);
+        System.out.println("test five started with value " + worker.toString());
+    }
 
-        System.out.println("test five started with value " );
+    @ParameterizedTest
+    @CsvFileSource(resources = "worker.csv", numLinesToSkip = 1)
+    public void testSeven(String name, String profession, int age, String activity) {
+        Worker worker = new Worker(name, profession, age, activity);
+        System.out.println("test five started with value " + worker.toString());
     }
 
 
