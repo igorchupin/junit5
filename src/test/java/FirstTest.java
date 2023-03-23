@@ -1,5 +1,4 @@
 import org.junit.jupiter.api.*;
-
 public class FirstTest {
 
     @BeforeAll
@@ -11,17 +10,17 @@ public class FirstTest {
     public void beforeEach() {
         System.out.println("Before each started");
     }
-
+    @Disabled
     @Test
     public void testOne() {
         System.out.println("test one started");
     }
-
+    @Disabled
     @Test
     public void testTwo() {
         System.out.println("test two started");
     }
-
+    @Disabled
     @Test
     public void testThree() {
         System.out.println("test three started");
