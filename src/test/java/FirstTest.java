@@ -1,4 +1,9 @@
 import org.junit.jupiter.api.*;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.EnumSource;
+import org.junit.jupiter.params.provider.ValueSource;
+
 public class FirstTest {
 
     @BeforeAll
@@ -25,11 +30,31 @@ public class FirstTest {
     public void testThree() {
         System.out.println("test three started");
     }
-
-    @Test
-    public void testFour() {
-        System.out.println("test four started");
+@Disabled
+    @ParameterizedTest
+    @ValueSource(strings = {"11", "12", "113", "114"})
+    public void testFour(int value) {
+        System.out.println("test four started with value " + value);
     }
+
+    @Disabled
+    @ParameterizedTest
+    @EnumSource(Directions.class)
+    public void testFive(Directions value) {
+        System.out.println("test five started with value " + value.name());
+    }
+
+    @ParameterizedTest
+    @CsvSource({
+            "alex, qa, 30, works",
+            "john,  aqa, 35, works",
+            "britney, manager, 37, sleeps"
+    })
+    public void testSix(String name, String profession, int age, String activity) {
+
+        System.out.println("test five started with value " );
+    }
+
 
     @AfterEach
     public void afterEach() {
