@@ -55,12 +55,28 @@ public class FirstTest {
         Worker worker = new Worker(name, profession, age, activity);
         System.out.println("test five started with value " + worker.toString());
     }
-
+    @Disabled
     @ParameterizedTest
     @CsvFileSource(resources = "worker.csv", numLinesToSkip = 1)
     public void testSeven(String name, String profession, int age, String activity) {
         Worker worker = new Worker(name, profession, age, activity);
         System.out.println("test five started with value " + worker.toString());
+    }
+
+    @Test
+    public void testEight() {
+        String a = "1234";
+        String b = "1234566";
+
+        String res = MainClass.justExample("11");
+
+
+        Assertions.assertAll("String Assertions",
+                () -> Assertions.assertFalse(a.equals(b), "asseert 1"),
+                () -> Assertions.assertTrue(a.contains("9"), "assert 2"),
+                () -> Assertions.assertTrue(a.contains("7"), "assert 3"),
+                () -> Assertions.assertNotEquals(a, b, "assert 4")
+        );
     }
 
 
